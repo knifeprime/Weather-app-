@@ -29,30 +29,38 @@ body::after {
 body::before {
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 2px, transparent 2px);
     background-size: 30px 30px;
-    animation: floatParticles1 15s linear infinite;
+    animation: floatParticles1 20s linear infinite;
 }
 
 /* Particle layer 2 */
 body::after {
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
     background-size: 20px 20px;
-    animation: floatParticles2 25s linear infinite;
+    animation: floatParticles2 100s linear infinite;
 }
 
 @keyframes floatParticles1 {
     from { transform: translateY(0) translateX(0); }
-    to { transform: translateY(-50px) translateX(30px); }
+    to { transform: translateY(-90px) translateX(30px); }
 }
 
 @keyframes floatParticles2 {
     from { transform: translateY(0) translateX(0); }
     to { transform: translateY(30px) translateX(-30px); }
 }
-.wea{
+
+.wea {
     text-align: center;
-    background: linear-gradient(135deg, #3700ff, #697e0a);
+    background: linear-gradient(135deg, #00ffea, #000000);
     color: aliceblue;
+    animation: textSlideIn 1s ease-out forwards;
 }
+
+@keyframes textSlideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 /* Card styling */
 .card {
     width: 90%;
@@ -63,13 +71,21 @@ body::after {
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
-    transition: transform 0.3s ease;
-    animation: cardEntry 1s ease-out;
+    transition: transform 0.5s ease;
+    animation: cardBounceIn 1.5s ease-out;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes cardEntry {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+@keyframes cardBounceIn {
+    0% { transform: scale(0.6) translateY(-100px); opacity: 0; }
+    60% { transform: scale(1.1) translateY(20px); opacity: 0.8; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.card:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #00d8a5, #4b4577);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6);
 }
 
 .search {
@@ -90,7 +106,12 @@ body::after {
     flex: 1;
     margin-right: 16px;
     font-size: 18px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search input:focus {
+    background: #d1f2f0;
+    transform: scale(1.03);
 }
 
 .search button {
@@ -101,12 +122,13 @@ body::after {
     width: 60px;
     height: 60px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s;
 }
 
 .search button:hover {
     background: #d1f2f0;
     transform: scale(1.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .search button img {
@@ -123,6 +145,7 @@ body::after {
     margin-top: 30px;
     opacity: 0;
     animation: fadeIn 1s ease-out forwards;
+   
 }
 
 @keyframes fadeIn {
